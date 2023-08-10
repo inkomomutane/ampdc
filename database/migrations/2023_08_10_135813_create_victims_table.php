@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Neighborhood;
 use App\Models\Organization;
-use App\Models\Provenance;
 use App\Models\ViolenceType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,13 +16,17 @@ return new class extends Migration
     {
         Schema::create('victims', function (Blueprint $table) {
             $table->id();
+            $table->ulid('ulidcode')->default(Str::ulid());
             $table->string('name')->nullable();
-            $table->integer('age')->default(0);
+            $table->date('birth_year')->default(now());
             $table->string('contact')->nullable();
             $table->longText('violence_description');
-            $table->foreignIdFor(Provenance::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Organization::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(ViolenceType::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Neighborhood::class)
+                ->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Organization::class)
+                ->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(ViolenceType::class)
+                ->constrained()->cascadeOnDelete();
             $table->dateTime('date')->default(now());
             $table->timestamps();
         });
