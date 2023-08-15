@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\District
@@ -28,6 +30,14 @@ use Illuminate\Database\Eloquent\Model;
 class District extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['name'];
+
+    public function neighborhoods () : HasMany {
+        return $this->hasMany(Neighborhood::class);
+    }
+
+    public function province() : BelongsTo {
+        return $this->belongsTo(Province::class);
+    }
 }

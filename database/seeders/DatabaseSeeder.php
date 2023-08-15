@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call(OrganizationSeeder::class);
+        $this->call(ProvinceSeeder::class);
         User::updateOrInsert(['id' => 1 ],[
             'id' => 1,
             'name' => 'Administrator',

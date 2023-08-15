@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Models\Province
@@ -23,8 +24,12 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin \Eloquent
  * @mixin IdeHelperProvince
  */
-class Province extends Model
+class Province extends \Eloquent
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    public function districts () : HasMany {
+        return $this->hasMany(District::class);
+    }
 }
