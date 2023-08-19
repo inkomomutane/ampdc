@@ -19,14 +19,14 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(OrganizationSeeder::class);
         $this->call(ProvinceSeeder::class);
-        User::updateOrInsert(['id' => 1 ],[
+        User::updateOrInsert(['id' => 1], [
             'id' => 1,
             'name' => 'Administrator',
             'email' => 'administrator@ampdc.org',
             'organization_id' => Organization::first()->id,
             'password' => Hash::make(env('ADMIN_PASSOWRD')),
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
 
     }

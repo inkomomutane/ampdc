@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Organization;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class OrganizationSeeder extends Seeder
@@ -13,12 +12,11 @@ class OrganizationSeeder extends Seeder
      */
     public function run(): void
     {
-        collect(['AMPDC','POSTO DE SAÚDE','IPAJ','AÇÃO SOCIAL'])->map(fn($organization,int $index)
-         => Organization::updateOrInsert(['id' => $index + 1 ],[
+        collect(['AMPDC', 'POSTO DE SAÚDE', 'IPAJ', 'AÇÃO SOCIAL'])->map(fn ($organization, int $index) => Organization::updateOrInsert(['id' => $index + 1], [
             'id' => $index + 1,
-            'name' => $organization ,
+            'name' => $organization,
             'created_at' => now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]));
     }
 }

@@ -16,6 +16,7 @@ use Spatie\Enum\Laravel\Casts\EnumCast;
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Database\Factories\StatusFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Status newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Status newQuery()
@@ -26,6 +27,7 @@ use Spatie\Enum\Laravel\Casts\EnumCast;
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Status whereVictimId($value)
+ *
  * @mixin \Eloquent
  * @mixin IdeHelperStatus
  */
@@ -34,22 +36,21 @@ class Status extends Model
     use HasFactory;
 
     protected $fillable = [
-            'victim_id',
-            'organization_id',
-            'status'
+        'victim_id',
+        'organization_id',
+        'status',
     ];
 
     protected $casts = [
-            'status' => EnumCast::class
+        'status' => EnumCast::class,
     ];
 
-    public function victim() : BelongsTo
+    public function victim(): BelongsTo
     {
         return $this->belongsTo(Victim::class);
     }
 
-
-    public function organization() : BelongsTo
+    public function organization(): BelongsTo
     {
         return $this->belongsTo(Organization::class);
     }

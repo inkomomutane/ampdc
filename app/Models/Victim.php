@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Status> $statuses
  * @property-read int|null $statuses_count
  * @property-read \App\Models\ViolenceType|null $violence
+ *
  * @method static \Database\Factories\VictimFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Victim newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Victim newQuery()
@@ -43,6 +44,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Victim whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Victim whereViolenceDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Victim whereViolenceTypeId($value)
+ *
  * @mixin \Eloquent
  * @mixin IdeHelperVictim
  */
@@ -50,8 +52,7 @@ class Victim extends Model
 {
     use HasFactory;
 
-
-    protected  $fillable = [
+    protected $fillable = [
         'name',
         'birth_year',
         'ulidcode',
@@ -60,11 +61,11 @@ class Victim extends Model
         'organization_id',
         'violence_type_id',
         'neighborhood_id',
-        'date'
+        'date',
     ];
 
     protected $appends = [
-        'age'
+        'age',
     ];
 
     /**
@@ -75,27 +76,31 @@ class Victim extends Model
     protected $casts = [
         'birth_year' => 'date:Y-m-d',
         'date' => 'datetime:Y-m-d',
-        'age' => 'int'
+        'age' => 'int',
     ];
 
-    public function organization() :BelongsTo {
+    public function organization(): BelongsTo
+    {
         return $this->belongsTo(Organization::class);
     }
 
-    public function violence() :BelongsTo {
+    public function violence(): BelongsTo
+    {
         return $this->belongsTo(ViolenceType::class);
     }
 
-    public function neighborhood() :BelongsTo {
+    public function neighborhood(): BelongsTo
+    {
         return $this->belongsTo(Neighborhood::class);
     }
 
-    public function statuses() : HasMany {
+    public function statuses(): HasMany
+    {
         return $this->hasMany(Status::class);
     }
 
-    public function getAgeAtrribute(){
+    public function getAgeAtrribute()
+    {
         return $this->birth_year->age;
     }
-
 }

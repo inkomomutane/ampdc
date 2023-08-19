@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Data\DistrictData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\LaravelData\WithData;
 
 /**
  * App\Models\District
@@ -15,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property int $province_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Database\Factories\DistrictFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|District newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|District newQuery()
@@ -24,20 +27,25 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|District whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|District whereProvinceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|District whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  * @mixin IdeHelperDistrict
  */
 class District extends Model
 {
     use HasFactory;
+    use WithData;
 
     protected $fillable = ['name'];
+    protected $dataClass = DistrictData::class;
 
-    public function neighborhoods () : HasMany {
+    public function neighborhoods(): HasMany
+    {
         return $this->hasMany(Neighborhood::class);
     }
 
-    public function province() : BelongsTo {
+    public function province(): BelongsTo
+    {
         return $this->belongsTo(Province::class);
     }
 }

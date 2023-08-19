@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\District;
-use App\Models\Neighborhood;
 use App\Models\Province;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ProvinceSeeder extends Seeder
@@ -746,27 +744,27 @@ class ProvinceSeeder extends Seeder
                 'id' => $province['id'],
                 'name' => $province['name'],
                 'created_at' => now(),
-            'updated_at' => now()
+                'updated_at' => now(),
             ]);
 
             $provinceModel = Province::whereId($province['id'])->first();
 
             foreach ($province['districts'] as $district) {
                 $provinceModel->districts()->updateOrCreate(['id' => $district['id']], [
-                    'id' =>  $district['id'],
-                    'name' =>  $district['name'],
+                    'id' => $district['id'],
+                    'name' => $district['name'],
                     'created_at' => now(),
-                    'updated_at' => now()
+                    'updated_at' => now(),
                 ]);
                 $districtModel = District::whereId($district['id'])->first();
 
                 foreach ($district['neighborhoods'] as $neighborhood) {
                     $districtModel->neighborhoods()->updateOrCreate([
-                        'id' => $neighborhood['id']],[
+                        'id' => $neighborhood['id']], [
                             'id' => $neighborhood['id'],
                             'name' => $neighborhood['name'],
                             'created_at' => now(),
-                            'updated_at' => now()
+                            'updated_at' => now(),
                         ]
                     );
                 }

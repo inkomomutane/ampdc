@@ -1,5 +1,5 @@
 import forms from '@tailwindcss/forms';
-import colors from 'tailwindcss/colors'
+const colors = require("tailwindcss/colors")
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -9,6 +9,7 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
         "./node_modules/flowbite/**/*.js",
+        "./node_modules/primevue/**/*.{vue,js,ts,jsx,tsx}"
     ],
         darkMode: 'class',
         theme: {
