@@ -17,7 +17,7 @@ class Service
     {
 
         return Inertia::render('Service/Service', [
-            'violence_type' => ViolenceTypeData::collection(ViolenceType::all())
+            'violence_types' => ViolenceTypeData::collection(ViolenceType::all())
         ]);
 
     }

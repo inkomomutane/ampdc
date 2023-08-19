@@ -64,9 +64,7 @@ class Victim extends Model
         'date',
     ];
 
-    protected $appends = [
-        'age',
-    ];
+    protected $appends = ['age'];
 
     /**
      * The attributes that should be cast.
@@ -99,7 +97,7 @@ class Victim extends Model
         return $this->hasMany(Status::class);
     }
 
-    public function getAgeAtrribute()
+    public function getAgeAttribute()
     {
         return $this->birth_year->age;
     }

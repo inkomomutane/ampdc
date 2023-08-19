@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\Data\NeighborhoodData;
+use App\Data\OrganizationData;
 use App\Models\Neighborhood;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -37,6 +39,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'neighborhoods' => NeighborhoodData::collection(Neighborhood::with('district.province')->get()),
+            'organizations' => OrganizationData::collection(Organization::all()),
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),

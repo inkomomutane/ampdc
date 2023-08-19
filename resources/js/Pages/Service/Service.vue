@@ -2,12 +2,19 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import CreateCase from "./CreateCase.vue";
-import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 defineProps({
-    violence_type: {
+    violence_types: {
         type: Array<App.Data.ViolenceTypeData>,
         required: true,
     },
+    neighborhoods : {
+        type : Array<App.Data.NeighborhoodData>,
+        required:true
+    },
+    organizations : {
+        type : Array<App.Data.OrganizationData>,
+            required : true
+    }
 });
 </script>
 
@@ -15,7 +22,7 @@ defineProps({
     <Head title="Atendimento" />
     <AuthenticatedLayout>
         <div>
-            <CreateCase :violence_type="violence_type" />
+            <CreateCase :organizations="organizations" :violence_types="violence_types" :neighborhoods="neighborhoods" />
         </div>
     </AuthenticatedLayout>
 </template>
