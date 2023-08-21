@@ -16,7 +16,6 @@ use Spatie\LaravelData\WithData;
  * @property int $district_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Database\Factories\NeighborhoodFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood newQuery()
@@ -26,9 +25,9 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Neighborhood whereUpdatedAt($value)
- *
- * @mixin \Eloquent
  * @mixin IdeHelperNeighborhood
+ * @property-read \App\Models\District $district
+ * @mixin \Eloquent
  */
 class Neighborhood extends Model
 {

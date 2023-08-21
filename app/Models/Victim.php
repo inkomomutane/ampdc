@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Data\VictimData;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\LaravelData\WithData;
 
 /**
  * App\Models\Victim
@@ -27,7 +29,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Status> $statuses
  * @property-read int|null $statuses_count
  * @property-read \App\Models\ViolenceType|null $violence
- *
  * @method static \Database\Factories\VictimFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Victim newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Victim newQuery()
@@ -44,13 +45,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Victim whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Victim whereViolenceDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Victim whereViolenceTypeId($value)
- *
- * @mixin \Eloquent
  * @mixin IdeHelperVictim
+ * @property-read mixed $age
+ * @mixin \Eloquent
  */
 class Victim extends Model
 {
     use HasFactory;
+    use WithData;
 
     protected $fillable = [
         'name',
@@ -65,6 +67,8 @@ class Victim extends Model
     ];
 
     protected $appends = ['age'];
+
+    protected $dataClass = VictimData::class;
 
     /**
      * The attributes that should be cast.
@@ -84,7 +88,7 @@ class Victim extends Model
 
     public function violence(): BelongsTo
     {
-        return $this->belongsTo(ViolenceType::class);
+        return $this->belongsTo(ViolenceType::class,'violence_type_id');
     }
 
     public function neighborhood(): BelongsTo

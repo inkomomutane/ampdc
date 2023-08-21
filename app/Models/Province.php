@@ -14,7 +14,6 @@ use Spatie\LaravelData\WithData;
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Database\Factories\ProvinceFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Province newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Province newQuery()
@@ -23,9 +22,10 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Province whereUpdatedAt($value)
- *
- * @mixin \Eloquent
  * @mixin IdeHelperProvince
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\District> $districts
+ * @property-read int|null $districts_count
+ * @mixin \Eloquent
  */
 class Province extends \Eloquent
 {

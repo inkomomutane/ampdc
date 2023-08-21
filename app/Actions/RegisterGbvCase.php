@@ -2,8 +2,10 @@
 
 namespace App\Actions;
 
+use App\Enums\Status as EnumsStatus;
 use App\Models\Status;
 use App\Models\Victim;
+use Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Lorisleiva\Actions\ActionRequest;
@@ -38,7 +40,27 @@ class RegisterGbvCase
             'neighborhood_id' =>  $actionRequest->neighborhood_id,
             'date' => now(),
         ]);
-        
+
+        $organizations = [
+            [
+                'organization_id' => Auth::user()->organization_id,
+                'status' =>  EnumsStatus::Pending(),
+            ]
+        ];
+
+        if(is_array($actionRequest->organizations)){
+            foreach ($actionRequest->organizations as $organization) {
+               array_push($organizations,[
+                'organization_id' => $organization,
+                'status' => EnumsStatus::Pending() ,
+               ]);
+            }
+        }
+
+        // dd($organizations);
+
+        $victim->statuses()->createMany($organizations);
+
         return to_route('dashboard.bgv.victim',[
             'victim' => $victim->id
         ]);

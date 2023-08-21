@@ -13,24 +13,20 @@ use Spatie\LaravelData\WithData;
  *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Victim> $victims
  * @property-read int|null $victims_count
- *
  * @method static \Database\Factories\ViolenceTypeFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|ViolenceType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ViolenceType newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ViolenceType query()
- *
  * @property int $id
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Illuminate\Database\Eloquent\Builder|ViolenceType whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ViolenceType whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ViolenceType whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ViolenceType whereUpdatedAt($value)
- *
- * @mixin \Eloquent
  * @mixin IdeHelperViolenceType
+ * @mixin \Eloquent
  */
 class ViolenceType extends Model
 {

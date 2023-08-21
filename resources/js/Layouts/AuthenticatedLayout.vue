@@ -8,11 +8,18 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+
+defineProps({
+    className : {
+        type: String,
+        default: 'bg-gray-100'
+    }
+})
 </script>
 
 <template>
     <div>
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen " :class="className">
             <nav class="bg-white border-b border-gray-100">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,6 +38,9 @@ const showingNavigationDropdown = ref(false);
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
                                     Atendimento
+                                </NavLink>
+                                <NavLink v-if="route().current('dashboard.bgv.*')" href="" :active="route().current('dashboard.bgv.*')">
+                                    Dados da vítima
                                 </NavLink>
                             </div>
                         </div>

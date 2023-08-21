@@ -6,6 +6,7 @@ use App\Data\NeighborhoodData;
 use App\Data\OrganizationData;
 use App\Models\Neighborhood;
 use App\Models\Organization;
+use Auth;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -39,7 +40,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'neighborhoods' => NeighborhoodData::collection(Neighborhood::with('district.province')->get()),
-            'organizations' => OrganizationData::collection(Organization::all()),
+            'organizations' =>  OrganizationData::collection(Organization::whereNotIn('id', [ Auth::user()?->organization_id ])->get() ) ,
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),

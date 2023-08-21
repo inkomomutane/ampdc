@@ -12,7 +12,9 @@ class VictimShowData
 
     public function AsController (Victim $victim){
         return Inertia::render('Victim/Index',[
-            'victim' => $victim
+            'victim' => $victim->load([
+                'organization','violence','neighborhood','statuses.organization'
+            ])->getData()
         ]);
     }
 }

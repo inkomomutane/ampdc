@@ -17,7 +17,6 @@ use Spatie\LaravelData\WithData;
  * @property int $province_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Database\Factories\DistrictFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|District newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|District newQuery()
@@ -27,9 +26,11 @@ use Spatie\LaravelData\WithData;
  * @method static \Illuminate\Database\Eloquent\Builder|District whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|District whereProvinceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|District whereUpdatedAt($value)
- *
- * @mixin \Eloquent
  * @mixin IdeHelperDistrict
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Neighborhood> $neighborhoods
+ * @property-read int|null $neighborhoods_count
+ * @property-read \App\Models\Province $province
+ * @mixin \Eloquent
  */
 class District extends Model
 {

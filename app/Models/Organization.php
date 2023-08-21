@@ -15,29 +15,24 @@ use Spatie\LaravelData\WithData;
  * @property-read int|null $users_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Victim> $victims
  * @property-read int|null $victims_count
- *
  * @method static \Database\Factories\OrganizationFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Organization newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Organization newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Organization query()
- *
  * @property int $id
  * @property string|null $name
  * @property mixed $services
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Organization whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Organization whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Organization whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Organization whereServices($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Organization whereUpdatedAt($value)
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Status> $statuses
  * @property-read int|null $statuses_count
- *
- * @mixin Eloquent
  * @mixin IdeHelperOrganization
+ * @mixin Eloquent
  */
 class Organization extends Eloquent
 {
